@@ -1,0 +1,104 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <h2 class="text-center mb-4">Login</h2>
+    
+    <!-- Error Alert -->
+    <div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Login Failed!</strong>
+      <p class="mb-0">{{ errorMessage }}</p>
+      <button type="button" class="btn-close" (click)="closeError()"></button>
+    </div>
+
+    <!-- Validation Errors for Individual Fields -->
+    <div *ngIf="showError && ObjectKeys(errorFields).length > 0" class="alert alert-warning" role="alert">
+      <strong>Issues found:</strong>
+      <ul class="mb-0">
+        <li *ngIf="errorFields['email']">
+          <strong>Email:</strong> {{ errorFields['email'] }}
+        </li>
+        <li *ngIf="errorFields['password']">
+          <strong>Password:</strong> {{ errorFields['password'] }}
+        </li>
+        <li *ngIf="errorFields['role']">
+          <strong>Role:</strong> {{ errorFields['role'] }}
+        </li>
+      </ul>
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          ngModel 
+          class="form-control" 
+          [class.is-invalid]="showError && errorFields['email']"
+          required
+          >
+        <div *ngIf="showError && errorFields['email']" class="invalid-feedback d-block">
+          {{ errorFields['email'] }}
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          ngModel 
+          class="form-control" 
+          [class.is-invalid]="showError && errorFields['password']"
+           
+          required>
+        <div *ngIf="showError && errorFields['password']" class="invalid-feedback d-block">
+          {{ errorFields['password'] }}
+        </div>
+      </div>
+
+      <!-- Role Field -->
+      <div class="mb-3">
+        <label for="role" class="form-label">Role:</label>
+        <select 
+          class="form-select text-primary" 
+          id="role" 
+          name="role"
+          ngModel
+          [class.is-invalid]="showError && errorFields['role']"
+          required>
+          <option value="">Select Role</option>
+          <option value="Admin">Admin</option>
+          <option value="Employee">Employee</option>
+        </select>
+        <div *ngIf="showError && errorFields['role']" class="invalid-feedback d-block">
+          {{ errorFields['role'] }}
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2">
+        <button 
+          type="submit" 
+          class="btn btn-primary flex-grow-1"
+           >
+          <span *ngIf="!isLoading">Login</span>
+          <span *ngIf="isLoading">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Logging in...
+          </span>
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-success"
+          (click)="signin()"
+          [disabled]="isLoading">
+          Signin
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
