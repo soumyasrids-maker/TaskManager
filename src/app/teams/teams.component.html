@@ -1,0 +1,107 @@
+<div class="container-fluid py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4 fw-bold mb-2">Teams</h1>
+      <p class="text-muted">Manage team members and collaboration.</p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <button class="btn btn-primary me-2">
+        <span>➕</span> New Team
+      </button>
+      <button class="btn btn-outline-secondary">
+        <span>👤</span> Invite Member
+      </button>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-end gap-2 mt-3 mt-md-0">
+      <div class="input-group input-group-sm" style="max-width: 250px;">
+        <span class="input-group-text" id="searchTeamsAddon">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search teams..." 
+               aria-label="Search teams" aria-describedby="searchTeamsAddon">
+        <button class="btn btn-outline-secondary" type="button">
+          <i class="fas fa-filter"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teams Grid -->
+  <div class="row g-4">
+    <!-- Team Card 1 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Frontend Team</h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3"><strong>Members:</strong> 5</p>
+          <p class="text-muted mb-3"><strong>Team Lead:</strong> John Doe</p>
+          <h6 class="mb-2">Team Members:</h6>
+          <ul class="list-unstyled small">
+            <li>✓ John Doe</li>
+            <li>✓ Jane Smith</li>
+            <li>✓ Mike Johnson</li>
+            <li>✓ Sarah Williams</li>
+            <li>✓ Alex Brown</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-light">
+          <button class="btn btn-sm btn-info me-2">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Card 2 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">Backend Team</h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3"><strong>Members:</strong> 4</p>
+          <p class="text-muted mb-3"><strong>Team Lead:</strong> Jane Smith</p>
+          <h6 class="mb-2">Team Members:</h6>
+          <ul class="list-unstyled small">
+            <li>✓ Jane Smith</li>
+            <li>✓ Mike Johnson</li>
+            <li>✓ Sarah Williams</li>
+            <li>✓ Tom Harris</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-light">
+          <button class="btn btn-sm btn-info me-2">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Card 3 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-warning text-white">
+          <h5 class="mb-0">Design Team</h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3"><strong>Members:</strong> 3</p>
+          <p class="text-muted mb-3"><strong>Team Lead:</strong> Mike Johnson</p>
+          <h6 class="mb-2">Team Members:</h6>
+          <ul class="list-unstyled small">
+            <li>✓ Mike Johnson</li>
+            <li>✓ Emily Davis</li>
+            <li>✓ David Wilson</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-light">
+          <button class="btn btn-sm btn-info me-2">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

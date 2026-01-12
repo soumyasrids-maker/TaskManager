@@ -1,0 +1,265 @@
+/* Dashboard Container */
+.dashboard-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+/* Stat Card Styles */
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #3498db !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon.projects-icon {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.stat-icon.teams-icon {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.stat-icon.tasks-icon {
+  background: rgba(241, 196, 15, 0.1);
+}
+
+.stat-icon.notifications-icon {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* Section Card Styles */
+.section-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.section-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
+}
+
+.section-card .card-header {
+  padding: 1.5rem !important;
+}
+
+.section-card .card-body {
+  padding: 1.5rem !important;
+  min-height: 400px;
+}
+
+.section-card .card-footer {
+  padding: 1rem !important;
+}
+
+/* Projects List */
+.project-item {
+  padding: 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.project-item:hover {
+  background-color: #f8f9fa;
+}
+
+.project-item h6 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.progress {
+  background-color: #e9ecef;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+/* Teams List */
+.team-item {
+  padding: 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.team-item:hover {
+  background-color: #f8f9fa;
+}
+
+.team-item h6 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Tasks List */
+.task-item {
+  padding: 10px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.task-item:hover {
+  background-color: #f8f9fa;
+}
+
+.task-item h6 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Notifications List */
+.notification-item:last-child {
+  border-bottom: none !important;
+}
+
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* Badge Customization */
+.badge {
+  padding: 0.5rem 0.75rem !important;
+  font-weight: 500;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+.btn-link {
+  color: #3498db !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+  color: #2980b9 !important;
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1199px) {
+  .section-card .card-body {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding-bottom: 1rem;
+  }
+
+  .stat-card .card-body {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-content {
+    margin-left: 0 !important;
+  }
+
+  .section-card .card-header {
+    padding: 1rem !important;
+  }
+
+  .section-card .card-body {
+    padding: 1rem !important;
+    min-height: auto;
+  }
+
+  .card-header h5 {
+    font-size: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.3rem;
+  }
+
+  .badge {
+    font-size: 0.65rem !important;
+    padding: 0.35rem 0.5rem !important;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem !important;
+  }
+
+  .section-card .card-header {
+    padding: 0.75rem !important;
+  }
+
+  .section-card .card-body {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-container {
+    background: white;
+  }
+
+  .stat-card:hover,
+  .section-card:hover {
+    transform: none;
+    box-shadow: none !important;
+  }
+}

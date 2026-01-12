@@ -1,0 +1,134 @@
+/* Background image styling for signin page */
+:host {
+  display: block;
+  min-height: 100vh;
+  background-image: url('../../assets/light.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Container and form styling */
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Form card styling */
+.form {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.form h2 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* Styling for form fields */
+.form-control,
+.form-select {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Label styling */
+.form-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Margin utilities */
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.gap-2 {
+  gap: 10px;
+}
+
+.flex-grow-1 {
+  flex: 1 1 auto;
+}
+
+/* Button styling */
+.btn {
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+  
+  .form h2 {
+    font-size: 24px;
+  }
+}
+

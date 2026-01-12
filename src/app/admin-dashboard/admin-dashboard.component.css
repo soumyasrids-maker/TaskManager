@@ -1,0 +1,402 @@
+/* ============================================
+   BOOTSTRAP HORIZONTAL NAVBAR STYLING
+   ============================================ */
+
+/* Navigation Bar Container */
+.navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 0;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Brand Styling */
+.navbar-brand {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white !important;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Links Container */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Individual Navigation Links */
+.navbar-nav .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem !important;
+  margin: 0 0.3rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.95rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-nav .nav-link.active {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+  border-bottom: 3px solid #ffd700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Font Awesome Icons in Navigation */
+.nav-icon-fa {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+.nav-link:hover .nav-icon-fa {
+  transform: scale(1.2) translateY(-2px);
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.nav-link.active .nav-icon-fa {
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Brand Icon */
+.navbar-brand i {
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover i {
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.nav-text {
+  display: none;
+}
+
+.nav-item.dropdown.ms-auto {
+  position: relative;
+  margin-left: auto;
+}
+
+/* Show nav text on larger screens (lg and up) - Bootstrap responsive */
+@media (min-width: 992px) {
+  .nav-text {
+    display: inline;
+  }
+}
+
+/* Mobile Responsive - Show text in collapsed menu */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1.5rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 4px;
+    margin: 0.25rem 0.75rem;
+  }
+
+  .nav-text {
+    display: inline;
+  }
+
+  .nav-item.dropdown.ms-auto {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .profile-dropdown {
+    position: fixed;
+    top: 70px;
+    right: 1rem;
+    min-width: 300px;
+  }
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  min-width: 220px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu.dropdown-menu-dark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.dropdown-item {
+  color: white !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  margin: 0.25rem 0.5rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  transform: translateX(4px);
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.2);
+  margin: 0.5rem 0;
+}
+
+/* Profile Dropdown Styling */
+.profile-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Font Awesome Profile Icon in Navbar */
+.nav-icon-profile {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.profile-link:hover .nav-icon-profile {
+  transform: scale(1.2);
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.profile-dropdown {
+  background: white !important;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  min-width: 280px;
+  padding: 0 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  margin-top: 1rem !important;
+}
+
+.profile-dropdown .profile-card {
+  padding: 1.25rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Font Awesome Profile Avatar */
+.profile-avatar-icon {
+  font-size: 2.5rem;
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  margin: 0;
+  font-weight: 700;
+  color: #333;
+  font-size: 1rem;
+}
+
+.profile-email {
+  margin: 0;
+  color: #999;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.profile-dropdown .dropdown-divider {
+  border-color: #e0e0e0;
+  margin: 1rem 0;
+}
+
+.profile-dropdown .logout-item {
+  color: #d32f2f !important;
+  padding: 0.75rem 1rem !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Font Awesome Logout Icon */
+.logout-icon {
+  font-size: 1.1rem;
+  color: #d32f2f;
+  transition: all 0.3s ease;
+}
+
+.profile-dropdown .logout-item:hover {
+  background-color: #ffebee !important;
+  color: #b71c1c !important;
+  transform: translateX(4px);
+}
+
+.profile-dropdown .logout-item:hover .logout-icon {
+  color: #b71c1c;
+  transform: rotate(-15deg);
+}
+
+/* Main Content Styling */
+.main-content {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: calc(100vh - 70px);
+  padding: 0;
+}
+
+/* Hamburger Menu Button */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Sticky Navigation */
+.sticky-top {
+  top: 0;
+  z-index: 1020;
+  position: sticky;
+}
+
+/* Container Fluid Styling */
+.container-fluid {
+  max-width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* ============================================
+   ACCESSIBILITY - FOCUS STATES
+   ============================================ */
+
+/* Focus states for keyboard navigation */
+.navbar-nav .nav-link:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+.dropdown-item:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: -2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .navbar {
+    border-bottom: 2px solid white;
+  }
+
+  .navbar-nav .nav-link {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .navbar-nav .nav-link.active {
+    border: 1px solid #ffd700;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-brand,
+  .navbar-nav .nav-link,
+  .dropdown-item,
+  .nav-icon-fa,
+  .profile-dropdown .logout-item {
+    transition: none !important;
+  }
+}
+
+/* Dark mode support (future-proofing) */
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: linear-gradient(135deg, #2c3e50 0%, #3d5a80 100%) !important;
+  }
+
+  .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+}
+
+

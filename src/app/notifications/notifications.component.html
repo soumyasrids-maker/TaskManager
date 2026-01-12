@@ -1,0 +1,156 @@
+<div class="container-fluid py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4 fw-bold mb-2">Notifications</h1>
+      <p class="text-muted">Stay updated with all your notifications.</p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <button class="btn btn-outline-secondary me-2">
+        <span>✓</span> Mark All as Read
+      </button>
+      <button class="btn btn-outline-danger">
+        <span>🗑</span> Clear All
+      </button>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-end gap-2 mt-3 mt-md-0">
+      <div class="input-group input-group-sm" style="max-width: 250px;">
+        <span class="input-group-text" id="searchNotificationsAddon">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search notifications..." 
+               aria-label="Search notifications" aria-describedby="searchNotificationsAddon">
+      </div>
+      <select class="form-select form-select-sm" style="max-width: 180px;">
+        <option selected>All Types</option>
+        <option>Info</option>
+        <option>Warning</option>
+        <option>Error</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Notifications Tabs -->
+  <div class="row">
+    <div class="col-12">
+      <ul class="nav nav-tabs mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-content" 
+                  type="button" role="tab" aria-controls="all-content" aria-selected="true">
+            <span>📨</span> All Notifications
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread-content" 
+                  type="button" role="tab" aria-controls="unread-content" aria-selected="false">
+            <span>🔔</span> Unread
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="read-tab" data-bs-toggle="tab" data-bs-target="#read-content" 
+                  type="button" role="tab" aria-controls="read-content" aria-selected="false">
+            <span>✓</span> Read
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- All Notifications -->
+        <div class="tab-pane fade show active" id="all-content" role="tabpanel" aria-labelledby="all-tab">
+          <div class="list-group">
+            <!-- Notification Item 1 -->
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">
+                    <span class="badge bg-info me-2">ℹ️ Info</span>
+                    Project "Website Redesign" updated
+                  </h6>
+                  <p class="mb-1 text-muted">John Doe updated the project status to 65% complete</p>
+                  <small class="text-muted">2 hours ago</small>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary me-2">Read</button>
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification Item 2 -->
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">
+                    <span class="badge bg-warning me-2">⚠️ Warning</span>
+                    Task assigned: Fix login bug
+                  </h6>
+                  <p class="mb-1 text-muted">You have been assigned a new task with high priority</p>
+                  <small class="text-muted">4 hours ago</small>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary me-2">Read</button>
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification Item 3 -->
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">
+                    <span class="badge bg-info me-2">ℹ️ Info</span>
+                    Team member added to Backend Team
+                  </h6>
+                  <p class="mb-1 text-muted">Jane Smith has been added to the Backend Team</p>
+                  <small class="text-muted">1 day ago</small>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary me-2">Read</button>
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification Item 4 -->
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">
+                    <span class="badge bg-danger me-2">❌ Error</span>
+                    Database backup failed
+                  </h6>
+                  <p class="mb-1 text-muted">The scheduled database backup could not be completed</p>
+                  <small class="text-muted">2 days ago</small>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary me-2">Read</button>
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unread Notifications -->
+        <div class="tab-pane fade" id="unread-content" role="tabpanel" aria-labelledby="unread-tab">
+          <div class="alert alert-info">
+            You have 3 unread notifications
+          </div>
+          <!-- Similar structure for unread notifications -->
+        </div>
+
+        <!-- Read Notifications -->
+        <div class="tab-pane fade" id="read-content" role="tabpanel" aria-labelledby="read-tab">
+          <div class="alert alert-info">
+            You have no read notifications to display
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

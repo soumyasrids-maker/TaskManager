@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "soumyasri.ds@gmail.com",
+      "password": "swedrf432",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "email": "soumyasri@gmail.com",
+      "password": "edrftgyh",
+      "role": "Employee"
+    },
+    {
+      "id": 3,
+      "email": "divya@gmail.com",
+      "password": "Dvsm#2537",
+      "role": "Admin"
+    },
+    {
+      "id": 4,
+      "email": "gayathri",
+      "password": "edrftg",
+      "role": "Employee"
+    },
+    {
+      "id": 5,
+      "email": "newuser@test.com",
+      "password": "test123",
+      "role": "Employee"
+    },
+    {
+      "id": 6,
+      "email": "testuser@example.com",
+      "password": "pass123",
+      "role": "Employee"
+    },
+    {
+      "id": 7,
+      "email": "trisha@gmail.com",
+      "password": "123456",
+      "role": "Employee"
+    },
+    {
+      "id": 8,
+      "email": "ram@gmail.com",
+      "password": "Dvs",
+      "role": "Employee"
+    },
+    {
+      "id": 9,
+      "email": "kapaul@gmail.com",
+      "password": "dvs",
+      "role": "Employee"
+    },
+    {
+      "id": 10,
+      "email": "doctor@gmail.com",
+      "password": "dvs",
+      "role": "Employee"
+    }
+  ],
+  "tasks": [],
+  "posts": []
+}

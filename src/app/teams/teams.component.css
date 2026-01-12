@@ -1,0 +1,126 @@
+/* Teams Component Responsive Styles */
+
+.container-fluid {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: none;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.card-header.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.card-header.bg-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+.card-header.bg-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.list-unstyled li {
+  padding: 0.25rem 0;
+}
+
+.list-unstyled li::before {
+  content: "✓ ";
+  color: #27ae60;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.badge {
+  padding: 0.5rem 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+
+  h1.display-4 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .row.g-4 > [class*='col-'] {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1.display-4 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .form-control, .form-select {
+    font-size: 0.85rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .card-body h6 {
+    font-size: 0.9rem;
+  }
+
+  .list-unstyled {
+    font-size: 0.85rem;
+  }
+
+  .card-footer {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .card-footer .btn {
+    flex: 1;
+    min-width: 80px;
+  }
+}

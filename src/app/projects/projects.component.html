@@ -1,0 +1,90 @@
+<div class="container-fluid py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4 fw-bold mb-2">Projects</h1>
+      <p class="text-muted">Manage and track all your projects in one place.</p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <button class="btn btn-primary me-2">
+        <span>➕</span> New Project
+      </button>
+      <button class="btn btn-outline-secondary">
+        <span>📥</span> Import
+      </button>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-end gap-2 mt-3 mt-md-0">
+      <div class="input-group input-group-sm" style="max-width: 250px;">
+        <span class="input-group-text" id="searchProjectsAddon">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search projects..." 
+               aria-label="Search projects" aria-describedby="searchProjectsAddon">
+        <button class="btn btn-outline-secondary" type="button">
+          <i class="fas fa-filter"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects Table/Cards -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-light border-bottom">
+          <h5 class="mb-0">All Projects</h5>
+        </div>
+        <div class="card-body p-0">
+          <!-- Responsive Table -->
+          <div class="table-responsive d-none d-md-block">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Project Name</th>
+                  <th>Status</th>
+                  <th>Progress</th>
+                  <th>Team Lead</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Website Redesign</strong></td>
+                  <td><span class="badge bg-primary">In Progress</span></td>
+                  <td>
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar" style="width: 65%">65%</div>
+                    </div>
+                  </td>
+                  <td>John Doe</td>
+                  <td>
+                    <button class="btn btn-sm btn-info">Edit</button>
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Mobile Card View -->
+          <div class="d-md-none p-3">
+            <div class="card mb-3 border">
+              <div class="card-body">
+                <h6 class="card-title">Website Redesign</h6>
+                <p class="card-text"><span class="badge bg-primary">In Progress</span></p>
+                <small class="text-muted">Team Lead: John Doe</small>
+                <div class="mt-2">
+                  <button class="btn btn-sm btn-info me-2">Edit</button>
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
