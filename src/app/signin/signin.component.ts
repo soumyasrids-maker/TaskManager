@@ -21,21 +21,24 @@ export class SigninComponent implements OnInit {
       {
         next:(res)=>{
           console.log('Registration successful:', res);
+          
+          // Extract user from response
+          const userFromResponse = res.user || res;
+          
           // Store user and token
-          this.auth.setUser(res.email);
+          this.auth.setUser({
+            id: userFromResponse.id,
+            name: userFromResponse.name || userFromResponse.email,
+            email: userFromResponse.email,
+            role: userFromResponse.role,
+            permissions: userFromResponse.permissions
+          });
           localStorage.setItem('token', res.accessToken ?? '');
           
-          console.log('User role:', res.role);
+          console.log('User role:', userFromResponse.role);
+          alert('Registration successful! Please log in to continue.');
+          // Redirect to login after successful registration
           this.router.navigate(['/login']);
-          // Redirect based on role
-          if (res.role === 'Admin') {
-            //this.router.navigate(['/admin-dashboard']);
-          } else if (res.role === 'Employee') {
-            //this.router.navigate(['/employee-dashboard']);
-          } else {
-            // Fallback navigation
-            this.router.navigate(['/login']);
-          }
         },
         error:(err)=>{
           console.log('Registration error:', err);

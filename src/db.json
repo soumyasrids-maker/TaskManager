@@ -59,8 +59,99 @@
       "email": "doctor@gmail.com",
       "password": "dvs",
       "role": "Employee"
+    },
+    {
+      "id": 11,
+      "email": "demo@gmail.com",
+      "password": "Dvsm#253",
+      "role": "Employee"
+    },
+    {
+      "id": 12,
+      "email": "gayathri@gmail.com",
+      "password": "Dvsm#253",
+      "role": "Admin"
     }
   ],
-  "tasks": [],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Fix Login Bug",
+      "description": "Fix the authentication issue in login component",
+      "priority": "High",
+      "status": "Completed",
+      "assignedTo": "demo@gmail.com",
+      "assignedBy": "divya@gmail.com",
+      "startDate": "2026-01-15",
+      "dueDate": "2026-01-20",
+      "progress": 100,
+      "createdAt": "2026-01-14"
+    },
+    {
+      "id": 2,
+      "title": "Update User Profile",
+      "description": "Update user profile page with new fields",
+      "priority": "Medium",
+      "status": "Completed",
+      "assignedTo": "demo@gmail.com",
+      "assignedBy": "divya@gmail.com",
+      "startDate": "2026-01-16",
+      "dueDate": "2026-01-25",
+      "progress": 100,
+      "createdAt": "2026-01-15"
+    },
+    {
+      "id": 4,
+      "title": "Database Optimization",
+      "description": "Optimize database queries for better performance",
+      "priority": "High",
+      "status": "In Progress",
+      "assignedTo": "trisha@gmail.com",
+      "assignedBy": "divya@gmail.com",
+      "startDate": "2026-01-10",
+      "dueDate": "2026-01-22",
+      "progress": 45,
+      "createdAt": "2026-01-08"
+    },
+    {
+      "title": "UONM-23098",
+      "priority": "Low",
+      "status": "Completed",
+      "assignedTo": "demo@gmail.com",
+      "startDate": "2026-01-16",
+      "dueDate": "2026-01-31",
+      "progress": 100,
+      "description": "UMB Bug fixes",
+      "assignedBy": "divya@gmail.com",
+      "id": 5,
+      "createdAt": "2026-01-16"
+    },
+    {
+      "title": "Vulnerability fixes",
+      "priority": "Medium",
+      "status": "In Progress",
+      "assignedTo": "demo@gmail.com",
+      "startDate": "2026-02-04",
+      "dueDate": "2026-03-11",
+      "progress": 50,
+      "description": "fix the vulnarability issues",
+      "assignedBy": "divya@gmail.com",
+      "id": 6,
+      "createdAt": "2026-02-04"
+    },
+    {
+      "title": "UONM - 4283",
+      "priority": "Low",
+      "status": "In Progress",
+      "assignedTo": "demo@gmail.com",
+      "startDate": "2026-02-05",
+      "dueDate": "2026-03-14",
+      "progress": 0,
+      "description": "Code coverage increase",
+      "assignedBy": "divya@gmail.com",
+      "id": 7,
+      "createdAt": "2026-02-04"
+    }
+  ],
   "posts": []
 }

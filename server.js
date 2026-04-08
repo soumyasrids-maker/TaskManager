@@ -5,7 +5,13 @@ const server = jsonServer.create();
 const router = jsonServer.router('src/db.json');
 const middlewares = jsonServer.defaults({ static: '.' });
 
-server.use(express.json());
+
+server.use(middlewares);
+server.use(jsonServer.bodyParser); // ✅ REQUIRED
+
+// Custom routes AFTER bodyParser
+
+//server.use(express.json());
 server.use(middlewares);
 
 // GET endpoint to view all users (for testing/debugging)

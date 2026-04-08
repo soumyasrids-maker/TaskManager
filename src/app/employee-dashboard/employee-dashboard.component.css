@@ -1,0 +1,102 @@
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.progress {
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #0d6efd;
+  transition: width 0.6s ease;
+}
+
+.btn-group > .btn {
+  flex: 1;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.navbar {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.display-6 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.input-group {
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+}
+
+.input-group .form-control {
+  border: 1px solid #dee2e6;
+}
+
+.input-group .form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+@media (max-width: 768px) {
+  .display-6 {
+    font-size: 1.75rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .btn-group {
+    width: 100% !important;
+  }
+
+  .btn-group > .btn {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.alert {
+  border-radius: 0.375rem;
+  border: none;
+}
+
+.fa-inbox {
+  color: #dee2e6;
+}

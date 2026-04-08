@@ -9,6 +9,7 @@ import { SigninComponent } from './signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { TeamsComponent } from './teams/teams.component';
@@ -20,6 +21,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     LoginComponent,
     SigninComponent,
     AdminDashboardComponent,
+    EmployeeDashboardComponent,
     DashboardComponent,
     ProjectsComponent,
     TeamsComponent,

@@ -6,26 +6,104 @@
     </div>
   </div>
 
+  <!-- Messages -->
+  <div class="row mb-4" *ngIf="successMessage">
+    <div class="col-12">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4" *ngIf="errorMessage">
+    <div class="col-12">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- Action Buttons -->
   <div class="row mb-4">
-    <div class="col-12 col-md-6">
-      <button class="btn btn-primary me-2">
+    <div class="col-12">
+      <button class="btn btn-primary me-2" (click)="openCreateForm()" *ngIf="!showForm">
         <span>➕</span> New Project
       </button>
-      <button class="btn btn-outline-secondary">
-        <span>📥</span> Import
-      </button>
     </div>
-    <div class="col-12 col-md-6 d-flex justify-content-end gap-2 mt-3 mt-md-0">
-      <div class="input-group input-group-sm" style="max-width: 250px;">
-        <span class="input-group-text" id="searchProjectsAddon">
-          <i class="fas fa-search"></i>
-        </span>
-        <input type="text" class="form-control" placeholder="Search projects..." 
-               aria-label="Search projects" aria-describedby="searchProjectsAddon">
-        <button class="btn btn-outline-secondary" type="button">
-          <i class="fas fa-filter"></i>
-        </button>
+  </div>
+
+  <!-- Create/Edit Form -->
+  <div class="row mb-4" *ngIf="showForm">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-light border-bottom">
+          <h5 class="mb-0">{{ isEditMode ? 'Edit Project' : 'Create New Project' }}</h5>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="submitForm()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="projectName" class="form-label">Project Name *</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="projectName" 
+                  [(ngModel)]="newProject.projectname"
+                  name="projectname"
+                  placeholder="Enter project name"
+                  required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="teamLead" class="form-label">Team Lead *</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="teamLead" 
+                  [(ngModel)]="newProject.teamlead"
+                  name="teamlead"
+                  placeholder="Enter team lead name"
+                  required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="status" class="form-label">Status *</label>
+                <select 
+                  class="form-select" 
+                  id="status" 
+                  [(ngModel)]="newProject.status"
+                  name="status"
+                  required>
+                  <option value="">-- Select Status --</option>
+                  <option value="Not Started">Not Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="progress" class="form-label">Progress (%)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="progress" 
+                  [(ngModel)]="newProject.progress"
+                  name="progress"
+                  min="0"
+                  max="100"
+                  placeholder="0-100">
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-primary">
+                {{ isEditMode ? 'Update Project' : 'Create Project' }}
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="cancelForm()">Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -35,9 +113,9 @@
     <div class="col-12">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-light border-bottom">
-          <h5 class="mb-0">All Projects</h5>
+          <h5 class="mb-0">All Projects ({{ projects.length }})</h5>
         </div>
-        <div class="card-body p-0">
+        <div class="card-body p-0" *ngIf="projects.length > 0">
           <!-- Responsive Table -->
           <div class="table-responsive d-none d-md-block">
             <table class="table table-hover mb-0">
@@ -51,18 +129,27 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><strong>Website Redesign</strong></td>
-                  <td><span class="badge bg-primary">In Progress</span></td>
+                <tr *ngFor="let project of projects">
+                  <td><strong>{{ project.projectname }}</strong></td>
+                  <td>
+                    <span class="badge" 
+                      [ngClass]="project.status === 'Completed' ? 'bg-success' : 
+                                 project.status === 'In Progress' ? 'bg-primary' : 
+                                 project.status === 'On Hold' ? 'bg-warning' : 'bg-secondary'">
+                      {{ project.status }}
+                    </span>
+                  </td>
                   <td>
                     <div class="progress" style="height: 20px;">
-                      <div class="progress-bar" style="width: 65%">65%</div>
+                      <div class="progress-bar" [style.width.%]="project.progress || 0">
+                        {{ project.progress || 0 }}%
+                      </div>
                     </div>
                   </td>
-                  <td>John Doe</td>
+                  <td>{{ project.teamlead }}</td>
                   <td>
-                    <button class="btn btn-sm btn-info">Edit</button>
-                    <button class="btn btn-sm btn-danger">Delete</button>
+                    <button class="btn btn-sm btn-info me-2" (click)="openEditForm(project)">Edit</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProject(project.id)">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -71,18 +158,40 @@
           
           <!-- Mobile Card View -->
           <div class="d-md-none p-3">
-            <div class="card mb-3 border">
+            <div class="card mb-3 border" *ngFor="let project of projects">
               <div class="card-body">
-                <h6 class="card-title">Website Redesign</h6>
-                <p class="card-text"><span class="badge bg-primary">In Progress</span></p>
-                <small class="text-muted">Team Lead: John Doe</small>
+                <h6 class="card-title">{{ project.projectname }}</h6>
+                <p class="card-text">
+                  <span class="badge" 
+                    [ngClass]="project.status === 'Completed' ? 'bg-success' : 
+                               project.status === 'In Progress' ? 'bg-primary' : 
+                               project.status === 'On Hold' ? 'bg-warning' : 'bg-secondary'">
+                    {{ project.status }}
+                  </span>
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Team Lead: {{ project.teamlead }}</small>
+                </p>
+                <div class="progress mb-2" style="height: 20px;">
+                  <div class="progress-bar" [style.width.%]="project.progress || 0">
+                    {{ project.progress || 0 }}%
+                  </div>
+                </div>
                 <div class="mt-2">
-                  <button class="btn btn-sm btn-info me-2">Edit</button>
-                  <button class="btn btn-sm btn-danger">Delete</button>
+                  <button class="btn btn-sm btn-info me-2" (click)="openEditForm(project)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteProject(project.id)">Delete</button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="card-body text-center py-5" *ngIf="projects.length === 0">
+          <p class="text-muted mb-3">No projects found.</p>
+          <button class="btn btn-primary" (click)="openCreateForm()">
+            <span>➕</span> Create Your First Project
+          </button>
         </div>
       </div>
     </div>

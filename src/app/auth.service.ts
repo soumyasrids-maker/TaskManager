@@ -28,8 +28,17 @@ export class AuthService {
 
   // Get user data from localStorage
   getUser(){
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    try {
+      const user = localStorage.getItem('user');
+      if (!user || user === 'undefined' || user === 'null') {
+        return null;
+      }
+      return JSON.parse(user);
+    } catch (error) {
+      console.error('Error parsing user from localStorage:', error);
+      localStorage.removeItem('user');
+      return null;
+    }
   }
 
   // Get user role

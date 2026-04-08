@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   isSigninMode: boolean = false;
   Login: string = "Login";
   Signin: string = "Signin";
-  
+ 
   // For error handling
   showError: boolean = false;
   errorMessage: string = '';
   errorFields: { [key: string]: string } = {};
   isLoading: boolean = false;
-
+  
   // Expose Object to template
   ObjectKeys = Object.keys;
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     this.errorFields = {};
     this.isLoading = true;
-
+     
     // Validate form
     const { email, password, role } = data.value;
 
@@ -71,22 +71,42 @@ export class LoginComponent implements OnInit {
     this.auth.postLogin({ email, password, role }).subscribe(
       {
         next: (res) => {
-          console.log('Login successful:', res);
+          console.log('Login successful - Full Response:', res);
+          console.log('Response keys:', Object.keys(res));
+          
+          // Extract user from response
+          const userFromResponse = res.user || res;
+          console.log('User from response:', userFromResponse);
+          console.log('User role:', userFromResponse.role);
           
           // Store user and token
-          this.auth.setUser(res.email);
+          const userObj = {
+            id: userFromResponse.id,
+            name: userFromResponse.name || userFromResponse.email,
+            email: userFromResponse.email,
+            role: userFromResponse.role,
+            permissions: userFromResponse.permissions
+          };
+          
+          console.log('Storing user object:', userObj);
+          this.auth.setUser(userObj);
+          
+          // Verify it was stored correctly
+          const storedUser = this.auth.getUser();
+          console.log('Verified stored user:', storedUser);
+          
           localStorage.setItem('token', res.accessToken ?? '');
 
           this.isLoading = false;
           this.showError = false;
 
-          console.log('User role:', res.role);
-          //console.log('User permissions:', res.permissions);
+          console.log('User role:', userFromResponse.role);
+          console.log('User permissions:', userFromResponse.permissions);
 
           // Redirect based on role
-          if (res.role === 'Admin') {
+          if (userFromResponse.role === 'Admin') {
             this.router.navigate(['/admin-dashboard']);
-          } else if (res.role === 'Employee') {
+          } else if (userFromResponse.role === 'Employee') {
             this.router.navigate(['/employee-dashboard']);
           } else {
             // Fallback navigation

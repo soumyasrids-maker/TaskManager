@@ -2,34 +2,82 @@
   <div class="row mb-4">
     <div class="col-12">
       <h1 class="display-4 fw-bold mb-2">Tasks</h1>
-      <p class="text-muted">Track and manage all your tasks efficiently.</p>
+      <p class="text-muted" *ngIf="isEmployee">Your assigned tasks</p>
+      <p class="text-muted" *ngIf="isAdmin">Manage and assign tasks to your team</p>
     </div>
   </div>
 
-  <!-- Action Buttons and Filters -->
-  <div class="row mb-4">
-    <div class="col-12 col-md-6">
-      <button class="btn btn-primary me-2">
-        <span>➕</span> New Task
-      </button>
-      <button class="btn btn-outline-secondary">
-        <span>📋</span> Bulk Action
-      </button>
-    </div>
-    <div class="col-12 col-md-6 d-flex gap-2 mt-3 mt-md-0">
-      <div class="input-group input-group-sm">
-        <span class="input-group-text" id="searchTasksAddon">
-          <i class="fas fa-search"></i>
-        </span>
-        <input type="text" class="form-control" placeholder="Search tasks..." 
-               aria-label="Search tasks" aria-describedby="searchTasksAddon">
+  <!-- Add Task Modal/Form -->
+  <div class="modal" [ngClass]="{'d-block': showForm}" style="background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ editingTaskId !== null ? 'Edit Task' : 'Create New Task' }}</h5>
+          <button type="button" class="btn-close" (click)="closeForm()"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="taskTitle" class="form-label">Task Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="taskTitle" [(ngModel)]="newTask.title" name="title" required>
+            </div>
+            <div class="mb-3">
+              <label for="taskDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="taskDescription" [(ngModel)]="newTask.description" name="description" rows="3"></textarea>
+            </div>
+            <!-- For Admins: Show Employee Assignment Dropdown -->
+            <div class="mb-3" *ngIf="isAdmin">
+              <label for="taskAssigned" class="form-label">Assign To Employee <span class="text-danger">*</span></label>
+              <select class="form-select" id="taskAssigned" [(ngModel)]="newTask.assignedTo" name="assignedTo" required>
+                <option value="">-- Select an employee --</option>
+                <option *ngFor="let emp of employees" [value]="emp.email">{{ emp.name }} ({{ emp.email }})</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="taskPriority" class="form-label">Priority</label>
+              <select class="form-select" id="taskPriority" [(ngModel)]="newTask.priority" name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="taskStatus" class="form-label">Status</label>
+              <select class="form-select" id="taskStatus" [(ngModel)]="newTask.status" name="status">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="taskStartDate" class="form-label">Start Date</label>
+              <input type="date" class="form-control" id="taskStartDate" [(ngModel)]="newTask.startDate" name="startDate">
+            </div>
+            <div class="mb-3">
+              <label for="taskDueDate" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="taskDueDate" [(ngModel)]="newTask.dueDate" name="dueDate">
+            </div>
+            <div class="mb-3">
+              <label for="taskProgress" class="form-label">Progress (%)</label>
+              <input type="number" class="form-control" id="taskProgress" [(ngModel)]="newTask.progress" name="progress" min="0" max="100">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="submitForm()">{{ editingTaskId !== null ? 'Update' : 'Create' }} Task</button>
+        </div>
       </div>
-      <select class="form-select form-select-sm">
-        <option selected>All Statuses</option>
-        <option>In Progress</option>
-        <option>Pending</option>
-        <option>Completed</option>
-      </select>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <button class="btn btn-primary me-2" (click)="openForm()" *ngIf="isAdmin">
+        <span>➕</span> Assign New Task
+      </button>
+      <span class="text-muted" *ngIf="isEmployee && tasks.length === 0">No tasks assigned to you yet.</span>
     </div>
   </div>
 
@@ -38,46 +86,57 @@
     <div class="col-12">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-light border-bottom">
-          <h5 class="mb-0">Active Tasks</h5>
+          <h5 class="mb-0">{{ isEmployee ? 'My Tasks' : 'All Tasks' }} ({{ tasks.length }})</h5>
         </div>
         <div class="card-body p-0">
+          <!-- Empty State -->
+          <div class="text-center py-5" *ngIf="tasks.length === 0">
+            <p class="text-muted">No tasks to display</p>
+          </div>
+
           <!-- Desktop Table View -->
-          <div class="table-responsive d-none d-md-block">
+          <div class="table-responsive d-none d-md-block" *ngIf="tasks.length > 0">
             <table class="table table-hover mb-0">
               <thead class="table-light">
                 <tr>
-                  <th><input type="checkbox" class="form-check-input"></th>
                   <th>Task Title</th>
                   <th>Priority</th>
                   <th>Status</th>
-                  <th>Assigned To</th>
+                  <th>Progress</th>
+                  <th *ngIf="isAdmin">Assigned To</th>
+                  <th>Start Date</th>
                   <th>Due Date</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input"></td>
-                  <td><strong>Fix login bug</strong></td>
-                  <td><span class="badge bg-danger">High</span></td>
-                  <td><span class="badge bg-primary">In Progress</span></td>
-                  <td>John Doe</td>
-                  <td>2025-02-10</td>
+                <tr *ngFor="let task of tasks">
+                  <td><strong>{{ task.title }}</strong><br><small class="text-muted">{{ task.description }}</small></td>
                   <td>
-                    <button class="btn btn-sm btn-info">Edit</button>
-                    <button class="btn btn-sm btn-danger">Delete</button>
+                    <span class="badge" [ngClass]="{
+                      'bg-danger': task.priority === 'High',
+                      'bg-warning text-dark': task.priority === 'Medium',
+                      'bg-success': task.priority === 'Low'
+                    }">{{ task.priority }}</span>
                   </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" class="form-check-input"></td>
-                  <td><strong>Update documentation</strong></td>
-                  <td><span class="badge bg-warning">Medium</span></td>
-                  <td><span class="badge bg-secondary">Pending</span></td>
-                  <td>Jane Smith</td>
-                  <td>2025-02-15</td>
                   <td>
-                    <button class="btn btn-sm btn-info">Edit</button>
-                    <button class="btn btn-sm btn-danger">Delete</button>
+                    <span class="badge" [ngClass]="{
+                      'bg-primary': task.status === 'In Progress',
+                      'bg-secondary': task.status === 'Pending',
+                      'bg-success': task.status === 'Completed'
+                    }">{{ task.status }}</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="width: 100px;">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="task.progress" [attr.aria-valuenow]="task.progress" aria-valuemin="0" aria-valuemax="100">{{ task.progress }}%</div>
+                    </div>
+                  </td>
+                  <td *ngIf="isAdmin">{{ task.assignedTo }}</td>
+                  <td>{{ task.startDate | date: 'short' }}</td>
+                  <td>{{ task.dueDate | date: 'short' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-info me-2" (click)="editTask(task.id)" [disabled]="isEmployee">Edit</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id)" [disabled]="isEmployee">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -85,38 +144,30 @@
           </div>
 
           <!-- Mobile List View -->
-          <div class="d-md-none">
+          <div class="d-md-none" *ngIf="tasks.length > 0">
             <div class="list-group list-group-flush">
-              <div class="list-group-item">
+              <div class="list-group-item" *ngFor="let task of tasks">
                 <div class="d-flex align-items-start">
-                  <input type="checkbox" class="form-check-input mt-1 me-2">
                   <div class="flex-grow-1">
-                    <h6 class="mb-1">Fix login bug</h6>
+                    <h6 class="mb-1">{{ task.title }}</h6>
+                    <small class="text-muted d-block">{{ task.description }}</small>
                     <small class="text-muted d-block">
-                      <span class="badge bg-danger me-1">High</span>
-                      <span class="badge bg-primary">In Progress</span>
+                      <span class="badge" [ngClass]="{
+                        'bg-danger': task.priority === 'High',
+                        'bg-warning text-dark': task.priority === 'Medium',
+                        'bg-success': task.priority === 'Low'
+                      }">{{ task.priority }}</span>
+                      <span class="badge" [ngClass]="{
+                        'bg-primary': task.status === 'In Progress',
+                        'bg-secondary': task.status === 'Pending',
+                        'bg-success': task.status === 'Completed'
+                      }">{{ task.status }}</span>
                     </small>
-                    <small class="text-muted d-block mt-1">Assigned: John Doe | Due: 2025-02-10</small>
+                    <small class="text-muted d-block mt-1" *ngIf="isAdmin">Assigned: {{ task.assignedTo }}</small>
+                    <small class="text-muted d-block">Due: {{ task.dueDate | date: 'short' }}</small>
                     <div class="mt-2">
-                      <button class="btn btn-sm btn-info me-2">Edit</button>
-                      <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="d-flex align-items-start">
-                  <input type="checkbox" class="form-check-input mt-1 me-2">
-                  <div class="flex-grow-1">
-                    <h6 class="mb-1">Update documentation</h6>
-                    <small class="text-muted d-block">
-                      <span class="badge bg-warning me-1">Medium</span>
-                      <span class="badge bg-secondary">Pending</span>
-                    </small>
-                    <small class="text-muted d-block mt-1">Assigned: Jane Smith | Due: 2025-02-15</small>
-                    <div class="mt-2">
-                      <button class="btn btn-sm btn-info me-2">Edit</button>
-                      <button class="btn btn-sm btn-danger">Delete</button>
+                      <button class="btn btn-sm btn-info me-2" (click)="editTask(task.id)" [disabled]="isEmployee">Edit</button>
+                      <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id)" [disabled]="isEmployee">Delete</button>
                     </div>
                   </div>
                 </div>
